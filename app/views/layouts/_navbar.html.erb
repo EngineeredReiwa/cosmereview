@@ -1,7 +1,7 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container-fluid ps-5 pe-5">
-      <a class="navbar-brand" href="/">Microposts</a>
+      <a class="navbar-brand" href="/">Cosme Review</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -11,7 +11,6 @@
           <div class="btn-group">
             <ul class="navbar-nav">
               <li class="mx-1"><%= link_to 'Users', users_path, class: 'nav-link' %></li>
-              <li class="mx-1"><%= link_to 'Post Review', '' , class: 'nav-link' %></li>
               <li class="mx-1"><%= link_to 'My Profile', user_path(current_user), class: 'nav-link' %></li>
               <li class="mx-1"><%= link_to 'Logout', logout_path, method: :delete, class: 'nav-link' %></li>
             </ul>

@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverses_of_relationship, source: :user
 
+  has_many :favorites
+  has_many :likes, through: :favorites, source: :review
+
   def follow(other_user)
     unless self == other_user
       self.relationships.find_or_create_by(follow_id: other_user.id)
@@ -26,4 +29,22 @@ class User < ApplicationRecord
   def following?(other_user)
     self.followings.include?(other_user)
   end
+  
+  def feed_reviews
+    Review.where(user_id: self.following_ids + [self.id])
+  end
+  
+  def favorite(review)
+    self.favorites.find_or_create_by(review_id: review.id)
+  end
+
+  def unfavorite(review)
+    favorite = self.favorites.find_by(review_id: review.id)
+    favorite.destroy if favorite
+  end
+  
+  def favoriting?(review)
+    self.likes.include?(review)
+  end
+  
 end

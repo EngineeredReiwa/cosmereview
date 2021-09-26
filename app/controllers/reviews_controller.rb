@@ -1,6 +1,10 @@
 class ReviewsController < ApplicationController
   before_action :require_user_logged_in
 
+  def new
+    @review = Review.new
+  end
+  
   def create
     @review = current_user.reviews.build(review_params)
     if @review.save
@@ -22,13 +26,13 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:content)
+    params.require(:review).permit(:title, :cosme, :content)
   end
   
   def correct_user
     @review = current_user.reviews.find_by(id: params[:id])
     unless @review
       redirect_to root_url
+    end
   end
-
 end

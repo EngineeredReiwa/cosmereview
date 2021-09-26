@@ -13,13 +13,16 @@ Rails.application.routes.draw do
   #Users画面
   resources :users, only: [:index, :show, :create] do
     member do
+      get :reviews
       get :followings
       get :followers
+      get :likes
     end
   end
 
   #画面なし
   resources :reviews, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :favorites, only: [:create, :destroy]
 
 end
