@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  #Reviews画面
-  root to: 'reviews#index'
-  resources :reviews, only: [:index, :show, :new, :create, :destroy]
+  #Top画面
+  root to: 'toppages#index'
   
   #Login/Logout画面
   get 'login', to: 'sessions#new'
@@ -11,7 +10,10 @@ Rails.application.routes.draw do
   #Signin画面
   get 'signup', to: 'users#new'
   
-  #Users画面
+  #Users画面 + Reviews画面
   resources :users, only: [:index, :show, :create]
+
+  #画面なし
+  resources :reviews, only: [:create, :destroy]
   
 end
