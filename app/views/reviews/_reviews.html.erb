@@ -10,6 +10,11 @@
           <div>
             <p><%= review.content %></p>
           </div>
+          <div>
+            <% if current_user == review.user %>
+              <%= link_to "Delete", review, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+            <% end %>
+          </div>
         </div>
       </li>
     <% end %>

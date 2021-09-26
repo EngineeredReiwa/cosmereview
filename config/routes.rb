@@ -10,10 +10,16 @@ Rails.application.routes.draw do
   #Signin画面
   get 'signup', to: 'users#new'
   
-  #Users画面 + Reviews画面
-  resources :users, only: [:index, :show, :create]
+  #Users画面
+  resources :users, only: [:index, :show, :create] do
+    member do
+      get :followings
+      get :followers
+    end
+  end
 
   #画面なし
   resources :reviews, only: [:create, :destroy]
-  
+  resources :relationships, only: [:create, :destroy]
+
 end
