@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     else
       @pagy, @reviews = pagy(current_user.reviews.order(id: :desc))
       flash.now[:danger] = 'レビューの投稿に失敗しました。'
-      redirect_to root_url
+      render 'toppages/index/'
     end
   end
 
