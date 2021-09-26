@@ -1,10 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :require_user_logged_in
 
-  def new
-    @review = Review.new
-  end
-  
   def create
     @review = current_user.reviews.build(review_params)
     if @review.save
@@ -13,7 +9,7 @@ class ReviewsController < ApplicationController
     else
       @pagy, @reviews = pagy(current_user.reviews.order(id: :desc))
       flash.now[:danger] = 'レビューの投稿に失敗しました。'
-      render 'toppages/index'
+      redirect_to root_url
     end
   end
 
