@@ -2,6 +2,8 @@
   <div class="row">
     <aside class="col-sm-4">
       <%= form_with(model: @review) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
+
         <div class="mb-3">
           <%= f.label :title, 'TITLE' %>
           <%= f.text_field :title, class: 'form-control'  %>
